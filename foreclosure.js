@@ -45,3 +45,13 @@ function loan(){
 }
 
 stevesLoan = loan();
+
+function borrower(loan){
+  var account = {
+    monthlyIncome: 1350,
+    funds: 2800,
+    loan: loan
+  };
+
+
+}
