@@ -44,14 +44,30 @@ function loan(){
   };
 }
 
-stevesLoan = loan();
-
 function borrower(loan){
   var account = {
     monthlyIncome: 1350,
     funds: 2800,
     loan: loan
   };
-
-
+    return {
+    getFunds: function(){
+      return account.funds;
+    },
+    makePayment: function(){
+      if(account.funds > loan.getMonthlyPayment()){
+        account.funds -= loan.getMonthlyPayment();
+        loan.receivePayment(loan.getMonthlyPayment());
+      } else {
+        loan.receivePayment(account.funds);
+        account.funds = 0;
+      }
+    },
+    payDay: function(){
+      account.funds += account.monthlyIncome;
+    }
+  };
 }
+
+stevesLoan = loan();
+steve = borrower(stevesLoan);
