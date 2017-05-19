@@ -1,11 +1,14 @@
 'use strict';
 
+// console.log('hi');
+
 var steve;
 var stevesLoan;
 var month = 0;
 var monthsUntilEvicted;
 
 function loan(){
+
   var account = {
     borrowed: 550000,
     balance: 286000,
@@ -15,4 +18,30 @@ function loan(){
     forclosed: false
   };
 
+  function missPayment(){
+    account.defaulted++;
+    if(account.defauled >= account.defaultsToForeclosure){
+      account.forclosed = true;
+    }
+  }
+
+  return {
+    getBalance: function(){
+      return account.balance;
+    },
+    receivePayment: function(amount){
+      if(amount < account.monthlyPayment){
+        missPayment();
+        return account.balance - amount;
+      }
+    },
+    getMonthlyPayment: function(){
+      return account.monthlyPayment;
+    },
+    isForeclosed: function(){
+      return account.forclosed;
+    }
+  };
 }
+
+stevesLoan = loan();
