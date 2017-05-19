@@ -24,19 +24,19 @@ function loan() {
   }
 
   return {
-    getBalance: function() {
+    getBalance : function() {
       return account.balance;
     },
-    receivePayment: function(amount) {
+    receivePayment : function(amount) {
       if (amount < account.monthlyPayment) {
         missPayment();
       }
       account.balance -= amount;
     },
-    getMonthlyPayment: function() {
+    getMonthlyPayment : function() {
       return account.monthlyPayment;
     },
-    isForeclosed: function() {
+    isForeclosed : function() {
       return account.foreclosed;
     }
   };
@@ -75,7 +75,7 @@ while (stevesLoan.isForeclosed() === false) {
   steve.payDay();
   steve.makePayment();
   month++;
-  if (stevesLoan.getBalance() <= 0) {
+  if (stevesLoan.getBalance() === 0) {
     break;
   }
 }
